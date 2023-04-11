@@ -13,7 +13,7 @@ use errors::StarknetRpcApiError;
 use jsonrpsee::core::RpcResult;
 use log::error;
 pub use mc_rpc_core::StarknetRpcApiServer;
-use mc_rpc_core::{BlockHashAndNumber, BlockId as StarknetBlockId};
+use mc_rpc_core::{BlockHashAndNumber, BlockId as StarknetBlockId, MaybePendingBlockWithTxHashes};
 use mc_storage::OverrideHandle;
 use pallet_starknet::runtime_api::StarknetRuntimeApi;
 use sc_client_api::backend::{Backend, StorageProvider};
@@ -125,4 +125,9 @@ where
 
         Ok(block.header().transaction_count)
     }
+
+	fn get_block_with_tx_hashes(&self, block_id: StarknetBlockId) -> RpcResult<MaybePendingBlockWithTxHashes> {
+		let runtime_api = self.client.runtime_api();
+		runtime_api.get_block_with_tx_hashes
+	}
 }

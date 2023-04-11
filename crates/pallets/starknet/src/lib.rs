@@ -596,6 +596,8 @@ pub mod pallet {
             Self::pending().iter().flat_map(|tx| tx.events.iter()).count() as u128
         }
 
+		pub fn get_block_with_tx_hashes(block)
+
         /// Store a Starknet block in the blockchain.
         ///
         /// # Arguments

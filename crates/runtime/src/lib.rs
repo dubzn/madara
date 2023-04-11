@@ -269,6 +269,10 @@ impl_runtime_apis! {
         fn current_block() -> mp_starknet::block::Block {
             Starknet::current_block()
         }
+
+		fn get_block_with_tx_hashes(block_id: &BlockId) -> Result<MaybePendingBlockWithTxHashes, DispatchError> {
+			Starknet::
+		}
     }
 
     #[cfg(feature = "runtime-benchmarks")]
